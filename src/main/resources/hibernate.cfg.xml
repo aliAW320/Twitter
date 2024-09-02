@@ -1,0 +1,35 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- For Oracle SQL use oracle.jdbc.driver.OracleDriver as the driver-->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!-- For Oracle SQL use  org.hibernate.dialect.OracleDialect as the dialect-->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!-- Example url for reference: dbc:mysql://localhost:3306/project_schema_db?useSSL=false -->
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/tweeter?useSSL=false</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">Alinoroozi84</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+
+
+        <property name="show_sql">true</property>
+
+        <property name="current_session_context_class">thread</property>
+        <mapping class="com.twiter.Twiter12.Models.User"/>
+        <mapping class="com.twiter.Twiter12.Models.Post"/>
+        <mapping class="com.twiter.Twiter12.Models.Comment"/>
+        <mapping class="com.twiter.Twiter12.Models.LikeEntity"/>
+        <mapping class="com.twiter.Twiter12.Models.TokenSeason"/>
+
+
+
+
+
+
+    </session-factory>
+</hibernate-configuration>
