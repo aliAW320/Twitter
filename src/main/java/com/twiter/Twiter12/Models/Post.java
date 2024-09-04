@@ -3,6 +3,7 @@ package com.twiter.Twiter12.Models;
 import jakarta.persistence.*;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,21 +21,27 @@ public class Post {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date postDate;
+    private LocalDateTime postDate;
 
     @Column
-    private URL media;
+    private String media;
 
     @Column(nullable = false)
     private int likesCount = 0;
 
-    @Column
-    private String mediaType;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     public Post() {}
+
+    public Post(User author, String text, LocalDateTime postDate, String media) {
+        this.author = author;
+        this.text = text;
+        this.postDate = postDate;
+        this.media = media;
+    }
 
     public long getId() {
         return id;
@@ -60,19 +67,19 @@ public class Post {
         this.author = author;
     }
 
-    public Date getPostDate() {
+    public LocalDateTime getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Date postDate) {
+    public void setPostDate(LocalDateTime postDate) {
         this.postDate = postDate;
     }
 
-    public URL getMedia() {
+    public String getMedia() {
         return media;
     }
 
-    public void setMedia(URL media) {
+    public void setMedia(String media) {
         this.media = media;
     }
 
@@ -84,13 +91,6 @@ public class Post {
         this.likesCount = likesCount;
     }
 
-    public String getMediaType() {
-        return mediaType;
-    }
-
-    public void setMediaType(String mediaType) {
-        this.mediaType = mediaType;
-    }
 
     public List<Comment> getComments() {
         return comments;

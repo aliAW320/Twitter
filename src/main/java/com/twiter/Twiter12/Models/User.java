@@ -30,17 +30,17 @@ public class User {
     @Column(length = 1000)
     private String bio;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Post> posts;
 
-    @ManyToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<User> followers;
 
-    @ManyToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<User> following;
 
     @Column
-    private URL profilePicture;
+    private String profilePicture;
 
     public User() {
     }
@@ -92,6 +92,35 @@ public class User {
             Query<User> query = session.createQuery(hql, User.class);
             query.setParameter("email", email);
             query.setParameter("username", username);
+
+            user = query.uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            System.err.println("Error during checkUser: " + e.getMessage());
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return user;
+
+    }
+
+    public static User getUserByEmail(String email) {
+
+        Session session = null;
+        Transaction transaction = null;
+        User user = null;
+        try {
+            session = DBSetup.getSession();
+            transaction = session.beginTransaction();
+
+            String hql = "FROM User u WHERE u.email = :email";
+            Query<User> query = session.createQuery(hql, User.class);
+            query.setParameter("email", email);
 
             user = query.uniqueResult();
             transaction.commit();
@@ -189,11 +218,11 @@ public class User {
         this.following = following;
     }
 
-    public URL getProfilePicture() {
+    public String getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(URL profilePicture) {
+    public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
 }
