@@ -1,5 +1,6 @@
 package com.twiter.Twiter12.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.twiter.Twiter12.DataBase.DBSetup;
 import jakarta.persistence.*;
 import org.hibernate.Session;
@@ -10,11 +11,13 @@ import java.util.List;
 @Entity
 public class User {
     @Id
+    @JsonIgnore
     private long id;
     @Column(unique = true, nullable = false)
     private String username;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
     @Column(nullable = false, unique = true)
     private String email;
@@ -25,10 +28,14 @@ public class User {
     @Column(length = 1000)
     private String bio;
     @OneToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Post> posts;
+
     @OneToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<User> followers;
     @OneToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<User> following;
     @Column
     private String profilePicture;

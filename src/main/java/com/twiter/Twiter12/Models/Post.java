@@ -1,5 +1,6 @@
 package com.twiter.Twiter12.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.net.URL;
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 public class Post {
     @Id
+    @JsonIgnore
     private long id;
 
     @Column(length = 2000)
