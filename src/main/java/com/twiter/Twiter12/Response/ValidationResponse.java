@@ -1,11 +1,11 @@
 package com.twiter.Twiter12.Response;
 
-public class AddPostResponse implements Response{
+public class ValidationResponse implements Response{
     private boolean validation;
     private String massage;
     private int code;
 
-    public AddPostResponse(boolean validation, String massage, int code) {
+    public ValidationResponse(boolean validation, String massage, int code) {
         this.validation = validation;
         this.massage = massage;
         this.code = code;

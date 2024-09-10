@@ -5,9 +5,6 @@ import jakarta.persistence.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
-
-import java.net.URL;
 import java.util.List;
 
 @Entity
@@ -23,22 +20,16 @@ public class User {
     private String email;
     @Column
     private int followersCount;
-
     @Column
     private int followingCount;
-
     @Column(length = 1000)
     private String bio;
-
     @OneToMany(fetch = FetchType.EAGER)
     private List<Post> posts;
-
     @OneToMany(fetch = FetchType.EAGER)
     private List<User> followers;
-
     @OneToMany(fetch = FetchType.EAGER)
     private List<User> following;
-
     @Column
     private String profilePicture;
 

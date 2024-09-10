@@ -12,8 +12,10 @@ import org.hibernate.Transaction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
+@CrossOrigin
 public class LoginController {
 
     @PostMapping("/login")
@@ -47,6 +49,14 @@ public class LoginController {
 
 
     }
+    @GetMapping("/login")
+    public ModelAndView loginPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login.html");
+        return modelAndView;
+    }
+
+
     @RequestMapping(value = "/login", method = RequestMethod.OPTIONS)
     public String handleOptionsRequest() {
         System.out.println("OPTIONS!!!!!!!!!!!!!");
