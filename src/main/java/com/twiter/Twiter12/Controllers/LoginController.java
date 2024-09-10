@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
     @PostMapping("/login")
+    @CrossOrigin
     public ResponseEntity login(@RequestBody LoginEntity login){
         Response response ;
         int code;

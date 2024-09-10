@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class SingUpController {
     @PostMapping("/singUp")
+    @CrossOrigin
     public ResponseEntity singUp(@RequestBody User user){
         Response response;
         int code;
