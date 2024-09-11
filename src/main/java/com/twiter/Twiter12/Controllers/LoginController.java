@@ -5,7 +5,9 @@ import com.twiter.Twiter12.Models.TokenSeason;
 import com.twiter.Twiter12.Models.User;
 import com.twiter.Twiter12.Response.LoginResponse;
 import com.twiter.Twiter12.Response.Response;
+import com.twiter.Twiter12.Utils.GetIp;
 import com.twiter.Twiter12.Utils.LoginEntity;
+import com.twiter.Twiter12.Utils.Media;
 import com.twiter.Twiter12.Utils.UniqueGenerator;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,13 +40,14 @@ public class LoginController {
             }
 
             code = 200;
-            response = new LoginResponse(true, "Login successful", token.getToken(), 200);
+            response = new LoginResponse(true, "Login successful", token.getToken(), GetIp.getIpBack()+"/" +user.getProfilePicture(),200);
             transaction.commit();
             session.close();
         } else {
             code = 404;
-            response = new LoginResponse(false, "Email or password is incorrect", null, 404);
+            response = new LoginResponse(false, "Email or password is incorrect", null, null,404);
         }
+        System.out.println(response);
         return new ResponseEntity<>(response, HttpStatus.valueOf(code));  // 'code' is an int
 
 

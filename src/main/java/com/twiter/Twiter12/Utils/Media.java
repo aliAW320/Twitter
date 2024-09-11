@@ -62,11 +62,11 @@ public class Media {
             String encodedString = null;
             try {
                 // Specify the directory path before src
-                String directoryPath = "../media/";
+                String directoryPath = "../";
                 File file = new File(directoryPath + mediaName);
 
                 // Check if the file exists
-                if (!file.exists()) {
+                if (!file.exists()||mediaName==null) {
                     System.err.println("File not found: " + file.getAbsolutePath());
                     return null;
                 }

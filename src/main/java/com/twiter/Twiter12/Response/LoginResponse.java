@@ -4,12 +4,14 @@ public class LoginResponse implements Response{
     private boolean valid ;
     private String massage;
     private String token;
+    private String profilePic;
     private int code;
 
-    public LoginResponse(boolean valid, String massage, String token, int code) {
+    public LoginResponse(boolean valid, String massage, String token, String profilePic,int code) {
         this.valid = valid;
         this.massage = massage;
         this.token = token;
+        this.profilePic = profilePic;
         this.code = code;
     }
 
@@ -43,5 +45,24 @@ public class LoginResponse implements Response{
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginResponse{" +
+                "valid=" + valid +
+                ", massage='" + massage + '\'' +
+                ", token='" + token + '\'' +
+                ", profilePic='" + profilePic + '\'' +
+                ", code=" + code +
+                '}';
     }
 }

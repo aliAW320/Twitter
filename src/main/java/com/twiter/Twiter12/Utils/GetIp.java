@@ -5,6 +5,6 @@ public class GetIp {
         return null;
     }
     public static String getIpBack() {
-        return "5.238.162.126";
+        return "http://2.191.135.46:8000";
     }
 }
